@@ -5,8 +5,8 @@
 Array::Array(int length){
     if (length < 0){
         this->length = 0;
-        std::cout << "Invalid length\n"
-                     "length = 0";
+        std::cout << "Неверно введена длина\n"
+                     "длина = 0";
     }
     this->length = length;
     arr = new number[length];
@@ -18,14 +18,15 @@ Array::~Array() {
 }
 
 
-bool Array::fill() {
-    if ( length > 0 ) {
-        for (int i = 0; i < length; i++) {
-            std::cin >> *(arr + i);
-        }
-        return true;
+int Array::getLength() {
+    return this->length;
+}
+
+
+void Array::fill() {
+    for (int i = 0; i < length; i++) {
+        std::cin >> *(arr + i);
     }
-    return false;
 }
 
 
@@ -44,18 +45,18 @@ bool Array::resize(int newLength) {
 }
 
 
-bool Array::changeElement(int num, number value) {
-    if(num >= length && num <= 0){
+bool Array::changeElement(int index, number value) {
+    if(index >= length && index <= 0){
         return false;
     }
-    *(arr + num) = value;
+    *(arr + index) = value;
     return true;
 }
 
 
 void Array::printArray() {
     for(int i = 0; i < length; i++){
-        std::cout << "Array: " << *(arr + i) << " ";
+        std::cout << "Массив: " << *(arr + i) << " ";
     }
 }
 
