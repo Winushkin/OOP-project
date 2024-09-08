@@ -10,6 +10,7 @@ class Array{
 private:
     int length;
     number *arr;
+
 public:
     Array(int length = 0);
     ~Array();
@@ -19,6 +20,7 @@ public:
     void printArray();
     number averageValue();
     number SKO();
+    void shakerSort(bool reverse = 0);
 
 
 

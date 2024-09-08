@@ -1,9 +1,10 @@
 #include "array.h"
+#include "iostream"
 
 
 Array::Array(int length){
     if (length < 0){
-        length = 0;
+        this->length = 0;
         std::cout << "Invalid length\n"
                      "length = 0";
     }
@@ -86,3 +87,33 @@ number Array::SKO() {
     return skoValue;
 }
 
+
+void Array::shakerSort(bool reverse) {
+    for ( int i = 0; i < length/2; i++){
+        for ( int j = i; i < length - 1; i++){
+            if ( !reverse ){
+                if ( *(arr + j) > *(arr + j + 1) ){
+                    std::swap(*(arr + j), *(arr + j + 1));
+                }
+
+            }else{
+                if ( *(arr + j) < *(arr + j + 1) ){
+                    std::swap(*(arr + j), *(arr + j + 1));
+                }
+            }
+        }
+
+        for ( int j = length - 1 - i; i > 0; i--){
+            if ( !reverse ){
+                if ( *(arr + j) < *(arr + j - 1) ){
+                    std::swap(*(arr + j), *(arr + j + 1));
+                }
+
+            }else{
+                if ( *(arr + j) > *(arr + j + 1) ){
+                    std::swap(*(arr + j), *(arr + j + 1));
+                }
+            }
+        }
+    }
+}
