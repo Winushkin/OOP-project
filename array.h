@@ -21,9 +21,6 @@ public:
     number averageValue();
     number SKO();
     void shakerSort(bool reverse = 0);
-
-
-
 };
 
 #endif //OOPPRACTICE_ARRAY_H
