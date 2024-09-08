@@ -15,9 +15,10 @@ public:
     ~Array();
     void fill();
     void resize(int length);
-
-
-
+    void changeElement(int num, number value);
+    void printArray();
+    void averageValue();
+    void SKO();
 
 
 
