@@ -1,0 +1,8 @@
+//
+// Created by Кирилл Беляев on 08.09.2024.
+//
+
+#ifndef OOPPRACTICE_APPLICATION_H
+#define OOPPRACTICE_APPLICATION_H
+
+#endif //OOPPRACTICE_APPLICATION_H
