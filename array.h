@@ -13,12 +13,12 @@ private:
 public:
     Array(int length = 0);
     ~Array();
-    void fill();
-    void resize(int length);
-    void changeElement(int num, number value);
+    bool fill();
+    bool resize(int length);
+    bool changeElement(int num, number value);
     void printArray();
-    void averageValue();
-    void SKO();
+    number averageValue();
+    number SKO();
 
 
 

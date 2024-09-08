@@ -11,24 +11,26 @@ Array::Array(int length){
     arr = new number[length];
 }
 
+
 Array::~Array() {
     delete []arr;
 }
 
-void Array::fill() {
-    if ( length > 0 ){
-        for ( int i = 0; i < length; i++ ){
+
+bool Array::fill() {
+    if ( length > 0 ) {
+        for (int i = 0; i < length; i++) {
             std::cin >> *(arr + i);
         }
-    }else{
-        std::cout << "length = 0";
+        return true;
     }
+    return false;
 }
 
-void Array::resize(int newLength) {
+
+bool Array::resize(int newLength) {
     if (newLength < 0){
-        std::cout << "Invalid length";
-        return;
+        return false;
     }
     number* resizeArr = new number[newLength];
     for(int i = 0; i < newLength; i++){
@@ -37,15 +39,18 @@ void Array::resize(int newLength) {
     arr = resizeArr;
     length = newLength;
     delete []arr;
+    return true;
 }
 
-void Array::changeElement(int num, number value) {
-    if(num >= length){
-        std::cout << "Invalid number";
-        return;
+
+bool Array::changeElement(int num, number value) {
+    if(num >= length && num <= 0){
+        return false;
     }
     *(arr + num) = value;
+    return true;
 }
+
 
 void Array::printArray() {
     for(int i = 0; i < length; i++){
@@ -53,27 +58,31 @@ void Array::printArray() {
     }
 }
 
-void Array::averageValue() {
+
+number Array::averageValue() {
     number sum = 0;
     if (length == 0){
-        std::cout << "Array is empty";
-        return;
+        return 0;
     }
     for(int i = 0; i < length; i++){
         sum += *(arr + i);
     }
-    sum /= length;
-    std::cout << "Average = " << sum;
+    sum /= (number)length;
+    return sum;
 }
 
-void Array::SKO() {
+
+number Array::SKO() {
+    number avg = averageValue();
     number skoValue = 0;
     if (length == 0){
-        std::cout << "Array is empty";
-        return;
+        return 0;
     }
     for(int i = 0; i < length; i++){
-        skoValue += *(arr + i);
+        skoValue += pow( *(arr + i) - avg, 2);
     }
+    skoValue /= (number)length;
+    skoValue = pow(skoValue, 0.5);
+    return skoValue;
 }
 
