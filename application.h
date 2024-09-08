@@ -1,8 +1,12 @@
-//
-// Created by Кирилл Беляев on 08.09.2024.
-//
-
 #ifndef OOPPRACTICE_APPLICATION_H
 #define OOPPRACTICE_APPLICATION_H
+
+
+class Application{
+
+public:
+    Application();
+
+};
 
 #endif //OOPPRACTICE_APPLICATION_H
