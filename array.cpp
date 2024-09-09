@@ -39,9 +39,9 @@ bool Array::resize(int newLength) {
     for(int i = 0; i < newLength; i++){
         *(resizeArr + i) = *(arr + i);
     }
-    arr = resizeArr;
     length = newLength;
     delete []arr;
+    arr = resizeArr;
     return true;
 }
 
@@ -86,7 +86,7 @@ number Array::SKO() {
     for(int i = 0; i < length; i++){
         skoValue += pow( *(arr + i) - avg, 2);
     }
-    skoValue /= (number)length;
+    skoValue /= ((number)length - 1);
     skoValue = pow(skoValue, 0.5);
     return skoValue;
 }
