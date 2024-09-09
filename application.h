@@ -12,8 +12,6 @@ public:
     Application();
     void showMenu();
     int exec();
-
-
 };
 
 #endif //OOPPRACTICE_APPLICATION_H

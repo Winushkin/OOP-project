@@ -4,6 +4,12 @@
 
 using namespace std;
 
+
+Application::Application() {
+
+}
+
+
 void Application::showMenu() {
     cout << "1. Создать массив\n";
     cout << "2. Заполнить массив\n";
@@ -14,55 +20,57 @@ void Application::showMenu() {
     cout << "7. Посчитать СКО\n";
     cout << "8. Отсортировать\n";
     cout << "9. Изменить элемент\n";
-    cout << "0. Выйти\n";
+    cout << "0. Выйти\n\n";
 }
+
 
 int Application::exec(){
     unsigned char choice, sortReverse;
     int len, newLen, index;
     number value;
     Array *array = new Array(0);
+
     while(true){
         showMenu();
         cout << "Выберите: "; cin >> choice;
 
         switch (choice){
 
-            case 1:
+            case '1':
                 cout << "Введите длину массива: "; cin >> len;
                 array = new Array(len);
                 break;
 
-            case 2:
+            case '2':
                 cout << "Введите " << array->getLength() << " элементов массива через пробел\n";
                 array->fill();
                 cout << "Массив заполнен\n";
                 break;
 
-            case 3:
+            case '3':
                 delete array;
                 array = new Array(0);
                 cout << "Массив удален\n";
                 break;
 
-            case 4:
+            case '4':
                 cout << "Введите новую длину массива: "; cin >> newLen;
                 array->resize(newLen);
                 break;
 
-            case 5:
+            case '5':
                 array->printArray();
                 break;
 
-            case 6:
-                cout << array->averageValue();
+            case '6':
+                cout << "Среднее значение: " << array->averageValue() << "\n";
                 break;
 
-            case 7:
-                cout << array->SKO();
+            case '7':
+                cout << "СКО:" << array->SKO() << "\n";
                 break;
 
-            case 8:
+            case '8':
                 cout << "Сортировка:\n";
                 cout << "1. По возрастанию\n";
                 cout << "2. По убыванию\n";
@@ -79,16 +87,21 @@ int Application::exec(){
                 cout << "Сортировка завершена\n";
                 break;
 
-            case 9:
+            case '9':
                 cout << "Введите\n";
-                cout << "Индекс элемента: "; cin >> index; cout << "\n";
+                cout << "Индекс элемента: "; cin >> index;
                 cout << "Новое значение: "; cin >> value; cout << "\n";
 
                 array->changeElement(index, value);
                 cout << "Значение элемента заменено";
+                break;
 
-            case 0:
+            case '0':
                 return 0;
+
+            default:
+                cout << "Invalid";
+
         }
     }
 }
