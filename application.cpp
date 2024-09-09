@@ -76,11 +76,11 @@ int Application::exec(){
                 cout << "2. По убыванию\n";
                 cin >> sortReverse;
                 switch (sortReverse) {
-                    case 1:
+                    case '1':
                         array->shakerSort();
                         break;
 
-                    case 2:
+                    case '2':
                         array->shakerSort(true);
                         break;
                 }
