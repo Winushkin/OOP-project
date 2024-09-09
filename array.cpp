@@ -1,7 +1,7 @@
 #include "array.h"
 #include "iostream"
 
-// using namespace std;
+
 
 Array::Array(int length){
     if (length < 0){
@@ -91,7 +91,7 @@ number Array::SKO() {
     return skoValue;
 }
 
-// разобраться с сортировкой
+
 void Array::shakerSort(bool reverse) {
     for ( int i = 0; i < length/2; i++){
         for ( int j = i; i < length - 1; i++){
