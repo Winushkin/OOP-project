@@ -93,7 +93,7 @@ int Application::exec(){
                 cout << "Новое значение: "; cin >> value; cout << "\n";
 
                 array->changeElement(index, value);
-                cout << "Значение элемента заменено";
+                cout << "Значение элемента заменено\n";
                 break;
 
             case '0':
