@@ -6,5 +6,7 @@ set(CMAKE_CXX_STANDARD 17)
 add_executable(OOPPractice
         main.cpp
         array.cpp
-        application.cpp)
+        application.cpp
+        complex.h
+        complex.cpp)
 
