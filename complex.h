@@ -8,24 +8,33 @@ using namespace std;
 
 class TComplex{
     double re;
-    TComplex im;
+    double im;
 
 public:
+
     TComplex();
+
+    TComplex(double a, double b);
 
     double getRe();
 
     double getIm();
 
-    void operator +(TComplex second);
+    TComplex operator +(TComplex second);
 
-    void operator -(TComplex second);
+    TComplex operator -(TComplex second);
 
-    void operator /(TComplex second);
+    TComplex operator /(TComplex second);
 
-    void operator *(TComplex second);
+    TComplex operator *(TComplex second);
 
-    friend istream& operator >> (istream & in, const TComplex & c);
+    TComplex operator +=(TComplex second);
+
+    TComplex operator -=(TComplex second);
+
+    TComplex operator /=(TComplex second);
+
+    friend istream& operator >> (istream & in, TComplex & c);
     friend ostream& operator << (ostream & os, const TComplex & c);
 };
 

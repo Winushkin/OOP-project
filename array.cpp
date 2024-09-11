@@ -1,7 +1,7 @@
 #include "array.h"
 #include "iostream"
 
-// using namespace std;
+
 
 Array::Array(int length){
     if (length < 0){
@@ -39,9 +39,9 @@ bool Array::resize(int newLength) {
     for(int i = 0; i < newLength; i++){
         *(resizeArr + i) = *(arr + i);
     }
-    arr = resizeArr;
     length = newLength;
     delete []arr;
+    arr = resizeArr;
     return true;
 }
 
@@ -72,7 +72,7 @@ number Array::averageValue() {
     for(int i = 0; i < length; i++){
         sum += *(arr + i);
     }
-    sum /= (number)length;
+    sum /= ((number)length);
     return sum;
 }
 
@@ -86,38 +86,59 @@ number Array::SKO() {
     for(int i = 0; i < length; i++){
         skoValue += pow( *(arr + i) - avg, 2);
     }
-    skoValue /= (number)length;
+    skoValue /= ((number)length - 1);
     skoValue = pow(skoValue, 0.5);
     return skoValue;
 }
 
-// разобраться с сортировкой
+
 void Array::shakerSort(bool reverse) {
-    for ( int i = 0; i < length/2; i++){
-        for ( int j = i; i < length - 1; i++){
-            if ( !reverse ){
-                if ( *(arr + j) > *(arr + j + 1) ){
-                    std::swap(*(arr + j), *(arr + j + 1));
-                }
+    bool swapped = true;
+    int start = 0;
+    int end = length - 1;
 
-            }else{
-                if ( *(arr + j) < *(arr + j + 1) ){
-                    std::swap(*(arr + j), *(arr + j + 1));
+    while (swapped) {
+        swapped = false;
+
+        if(!reverse){
+            for (int i = start; i < end; ++i) {
+                if (arr[i] > arr[i + 1]) {
+                    std::swap(arr[i], arr[i + 1]);
+                    swapped = true;
+                }
+            }
+        }else{
+            for (int i = start; i < end; ++i) {
+                if (arr[i] < arr[i + 1]) {
+                    std::swap(arr[i], arr[i + 1]);
+                    swapped = true;
                 }
             }
         }
 
-        for ( int j = length - 1 - i; i > 0; i--){
-            if ( !reverse ){
-                if ( *(arr + j) < *(arr + j - 1) ){
-                    std::swap(*(arr + j), *(arr + j + 1));
-                }
+        if (!swapped) {
+            break;
+        }
 
-            }else{
-                if ( *(arr + j) > *(arr + j + 1) ){
-                    std::swap(*(arr + j), *(arr + j + 1));
+        swapped = false;
+        --end;
+
+        if(!reverse){
+            for (int i = end - 1; i >= start; --i) {
+                if (arr[i] > arr[i + 1]) {
+                    std::swap(arr[i], arr[i + 1]);
+                    swapped = true;
+                }
+            }
+        }else{
+            for (int i = end - 1; i >= start; --i) {
+                if (arr[i] < arr[i + 1]) {
+                    std::swap(arr[i], arr[i + 1]);
+                    swapped = true;
                 }
             }
         }
+
+        ++start;
     }
 }

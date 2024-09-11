@@ -10,8 +10,8 @@ TComplex::TComplex() {
 }
 
 
-double TComplex::getRe() {
-    return this->re;
+TComplex::TComplex(double a, double b) {
+    re = a; im = b;
 }
 
 
@@ -20,33 +20,52 @@ double TComplex::getIm(){
 }
 
 
-void TComplex::operator+(TComplex second) {
-    re += second.re;
-    im += second.im;
+TComplex TComplex::operator+(TComplex second) {
+    return TComplex(re + second.re, im + second.im);
 }
 
 
-void TComplex::operator-(TComplex second) {
-    re -= second.re;
-    im -= second.im;
+TComplex TComplex::operator-(TComplex second) {
+    return TComplex(re - second.re, im - second.im);
 }
 
 
-void TComplex::operator/(TComplex second) {
+TComplex TComplex::operator/(TComplex second) {
     double a = (re * second.re + im * second.im)/(second.re * second.re + second.im * second.im);
     double b = (second.re * im - re * second.im)/(second.re * second.re + second.im * second.im);
-    re = a;
-    im = b;
+    return TComplex(a, b);
 }
 
 
-void TComplex::operator*(TComplex second) {
+TComplex TComplex::operator*(TComplex second) {
     double a;
     double b;
     a = re * second.re - im * second.im;
     b = re * second.im + im * second.re;
+    return TComplex(a, b);
+}
+
+
+TComplex TComplex::operator +=(TComplex second) {
+    re += second.re;
+    im += second.im;
+    return TComplex(re, im);
+}
+
+
+TComplex TComplex::operator -=(TComplex second) {
+    re -= second.re;
+    im -= second.im;
+    return TComplex(re, im);
+}
+
+
+TComplex TComplex::operator /=(TComplex second) {
+    double a = (re * second.re + im * second.im)/(second.re * second.re + second.im * second.im);
+    double b = (second.re * im - re * second.im)/(second.re * second.re + second.im * second.im);
     re = a;
     im = b;
+    return TComplex(re, im);
 }
 
 
@@ -59,8 +78,11 @@ std::ostream &operator<<(std::ostream &os, const TComplex &complex){
     return os;
 }
 
-std::ostream &operator>>(std::ostream & in, const TComplex &complex){
+
+std::istream &operator>>(std::istream & in, TComplex &complex){
     in >> complex.re >> complex.im;
+    return in;
 }
+
 
 
