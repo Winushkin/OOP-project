@@ -20,19 +20,31 @@ public:
 
     double getIm();
 
-    TComplex operator +(TComplex second);
+    TComplex operator+(TComplex second);
 
-    TComplex operator -(TComplex second);
+    TComplex operator-(TComplex second);
 
-    TComplex operator /(TComplex second);
+    TComplex operator/(TComplex second);
 
-    TComplex operator *(TComplex second);
+    TComplex operator*(TComplex second);
 
-    TComplex operator +=(TComplex second);
+    TComplex operator+=(TComplex second);
 
-    TComplex operator -=(TComplex second);
+    TComplex operator-=(TComplex second);
 
-    TComplex operator /=(TComplex second);
+    TComplex operator/=(TComplex second);
+
+    TComplex operator*=(TComplex second);
+
+    bool operator==(TComplex second);
+
+    bool operator!=(TComplex second);
+
+    bool operator<(TComplex second);
+
+    bool operator>(TComplex second);
+
+
 
     friend istream& operator >> (istream & in, TComplex & c);
     friend ostream& operator << (ostream & os, const TComplex & c);

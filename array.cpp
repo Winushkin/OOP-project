@@ -72,7 +72,7 @@ number Array::averageValue() {
     for(int i = 0; i < length; i++){
         sum += *(arr + i);
     }
-    sum /= ((number)length);
+    sum /= ((double)length);
     return sum;
 }
 
@@ -86,7 +86,7 @@ number Array::SKO() {
     for(int i = 0; i < length; i++){
         skoValue += pow( *(arr + i) - avg, 2);
     }
-    skoValue /= ((number)length - 1);
+    skoValue /= ((double)length - 1);
     skoValue = pow(skoValue, 0.5);
     return skoValue;
 }
