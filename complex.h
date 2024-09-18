@@ -36,6 +36,10 @@ public:
 
     TComplex operator*=(TComplex second);
 
+    TComplex operator+=(double second);
+
+    TComplex operator/=(double second);
+
     bool operator==(TComplex second);
 
     bool operator!=(TComplex second);

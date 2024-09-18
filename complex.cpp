@@ -130,6 +130,19 @@ bool TComplex::operator>(TComplex second){
     return false;
 }
 
+TComplex TComplex::operator+=(double second) {
+    re += second;
+    return TComplex(re, im);
+}
+
+TComplex TComplex::operator/=(double second) {
+    double a = (re * second)/(second * second);
+    double b = (second * im)/(second * second);
+    re = a;
+    im = b;
+    return TComplex(re, im);
+}
+
 
 double pow(TComplex a, double n){
 

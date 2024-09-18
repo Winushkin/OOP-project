@@ -67,7 +67,7 @@ void Array::printArray() {
 number Array::averageValue() {
     number sum = 0;
     if (length == 0){
-        return 0;
+        return sum;
     }
     for(int i = 0; i < length; i++){
         sum += *(arr + i);
@@ -81,7 +81,7 @@ number Array::SKO() {
     number avg = averageValue();
     number skoValue = 0;
     if (length == 0){
-        return 0;
+        return skoValue;
     }
     for(int i = 0; i < length; i++){
         skoValue += pow( *(arr + i) - avg, 2);
