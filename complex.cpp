@@ -39,6 +39,9 @@ double TComplex::module(TComplex *complex) {
 
 
 TComplex pow(TComplex complex, double n){
+    if (!( complex.re || complex.im )){
+        return 0;
+    }
     return TComplex(std::pow(complex.module(&complex), n) * cos(atan(complex.im / complex.re) * n),
                     std::pow(complex.module(&complex), n) * sin(atan(complex.im / complex.re) * n));
 }
