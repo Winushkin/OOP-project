@@ -84,10 +84,10 @@ number Array::SKO() {
         return skoValue;
     }
     for(int i = 0; i < length; i++){
-        skoValue += pow( *(arr + i) - avg, 2);
+        skoValue += skoValue.pow( *(arr + i) - avg, 2);
     }
     skoValue /= ((double)length - 1);
-    skoValue = pow(skoValue, 0.5);
+    skoValue = skoValue.pow(skoValue, 0.5);
     return skoValue;
 }
 
