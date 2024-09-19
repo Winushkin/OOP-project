@@ -22,9 +22,7 @@ public:
 
     double getIm();
 
-    double module(TComplex &complex);
-
-    TComplex pow(TComplex complex, double n);
+    double module(TComplex *complex);
 
     TComplex operator+(TComplex second);
 
@@ -56,6 +54,8 @@ public:
 
     bool operator>(TComplex second);
 
+
+    friend TComplex pow(TComplex complex, double n);
     friend istream& operator >> (istream & in, TComplex & c);
     friend ostream& operator << (ostream & os, const TComplex & c);
 };

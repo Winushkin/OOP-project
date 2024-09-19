@@ -31,16 +31,16 @@ double TComplex::getIm(){
 }
 
 
-double TComplex::module(TComplex &complex) {
-    double a = std::pow(complex.getRe(),2);
-    double b = std::pow(complex.getIm(), 2);
+double TComplex::module(TComplex *complex) {
+    double a = std::pow(complex->getRe(),2);
+    double b = std::pow(complex->getIm(), 2);
     return std::pow(a + b, 0.5);
 }
 
 
-TComplex TComplex::pow(TComplex complex, double n){
-    return std::pow(module(complex), n) *
-            (cos(atan(complex.im / complex.re) * n) + sin(atan(complex.im / complex.re) * n));
+TComplex pow(TComplex complex, double n){
+    return TComplex(std::pow(complex.module(&complex), n) * cos(atan(complex.im / complex.re) * n),
+                    std::pow(complex.module(&complex), n) * sin(atan(complex.im / complex.re) * n));
 }
 
 

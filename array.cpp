@@ -6,7 +6,7 @@
 Array::Array(int length){
     if (length < 0){
         this->length = 0;
-        std::cout << "Неверно введена длина\n"
+        cout << "Неверно введена длина\n"
                      "длина = 0";
     }
     this->length = length;
@@ -26,7 +26,7 @@ int Array::getLength() {
 
 void Array::fill() {
     for (int i = 0; i < length; i++) {
-        std::cin >> *(arr + i);
+        cin >> *(arr + i);
     }
 }
 
@@ -58,7 +58,7 @@ bool Array::changeElement(int index, number value) {
 void Array::printArray() {
     std::cout << "Массив: ";
     for(int i = 0; i < length; i++){
-        std::cout<< *(arr + i) << " ";
+        cout<< *(arr + i) << " ";
     }
     std::cout << "\n";
 }
