@@ -22,7 +22,7 @@ public:
 
     double getIm();
 
-    double module(TComplex &complex);
+    double module(TComplex *complex);
 
     TComplex pow(TComplex complex, double n);
 
