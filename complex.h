@@ -14,11 +14,17 @@ public:
 
     TComplex();
 
-    TComplex(double a, double b);
+    TComplex(double re, double im);
+
+    TComplex(double re);
 
     double getRe();
 
     double getIm();
+
+    double module(TComplex &complex);
+
+    TComplex pow(TComplex complex, double n);
 
     TComplex operator+(TComplex second);
 
@@ -49,8 +55,6 @@ public:
     bool operator<(TComplex second);
 
     bool operator>(TComplex second);
-
-    double module(TComplex *complex);
 
     friend istream& operator >> (istream & in, TComplex & c);
     friend ostream& operator << (ostream & os, const TComplex & c);

@@ -4,17 +4,23 @@
 
 using namespace std;
 
-
+//Constructors
 TComplex::TComplex() {
-
+    re = im = 0;
 }
 
 
-TComplex::TComplex(double a, double b){
-    re = a; im = b;
+TComplex::TComplex(double re) {
+    this->re = re;
+    im = 0;
 }
 
 
+TComplex::TComplex(double re, double im){
+    this->re = re; this->im = im;
+}
+
+//Methods
 double TComplex::getRe(){
     return this->re;
 }
@@ -25,6 +31,20 @@ double TComplex::getIm(){
 }
 
 
+double TComplex::module(TComplex &complex) {
+    double a = std::pow(complex.getRe(),2);
+    double b = std::pow(complex.getIm(), 2);
+    return std::pow(a + b, 0.5);
+}
+
+
+TComplex TComplex::pow(TComplex complex, double n){
+    return std::pow(module(complex), n) *
+            (cos(atan(complex.im / complex.re) * n) + sin(atan(complex.im / complex.re) * n));
+}
+
+
+//Overloads
 TComplex TComplex::operator+(TComplex second){
     return TComplex(re + second.re, im + second.im);
 }
@@ -141,18 +161,6 @@ TComplex TComplex::operator/=(double second){
 
 
 TComplex TComplex::operator=(double second){
-    re = second;
-    im = 0;
-    return TComplex();
+    return TComplex(second, 0);
 }
 
-double TComplex::module(TComplex *complex) {
-    double a = pow(complex->getRe(),2);
-    double b = pow(complex->getIm(), 2);
-    return pow(a + b, 0.5);
-}
-
-
-double pow(TComplex a, double n){
-
-}
