@@ -40,6 +40,8 @@ public:
 
     TComplex operator/=(double second);
 
+    TComplex operator=(double second);
+
     bool operator==(TComplex second);
 
     bool operator!=(TComplex second);
@@ -48,7 +50,7 @@ public:
 
     bool operator>(TComplex second);
 
-
+    double module(TComplex *complex);
 
     friend istream& operator >> (istream & in, TComplex & c);
     friend ostream& operator << (ostream & os, const TComplex & c);
