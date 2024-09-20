@@ -39,11 +39,14 @@ double TComplex::module(TComplex *complex) {
 
 
 TComplex pow(TComplex complex, double n){
-    if (!( complex.re || complex.im )){
-        return 0;
-    }
-    return TComplex(std::pow(complex.module(&complex), n) * cos(atan(complex.im / complex.re) * n),
-                    std::pow(complex.module(&complex), n) * sin(atan(complex.im / complex.re) * n));
+    double argZ;
+    if(complex.re > 0) argZ = atan(complex.im / complex.re);
+    else if(complex.re < 0 && complex.im >= 0) argZ = 3.14 - atan(complex.im / complex.re);
+    else if(complex.re < 0 && complex.im < 0) argZ = -3.14 + atan(complex.im / complex.re);
+    else if(complex.re == 0 && complex.im > 0) argZ = 3.14/2;
+    else argZ = -3.14/2;
+    return TComplex(std::pow(complex.module(&complex), n) * cos(argZ * n),
+                    std::pow(complex.module(&complex), n) * sin(argZ * n));
 }
 
 
