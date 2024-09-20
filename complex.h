@@ -18,19 +18,19 @@ public:
 
     TComplex(double re);
 
-    double getRe();
+    double getRe() const;
 
-    double getIm();
+    double getIm() const;
 
     double module(TComplex *complex);
 
-    TComplex operator+(TComplex second);
+    TComplex operator+(TComplex &second) const;
 
-    TComplex operator-(TComplex second);
+    TComplex operator-(TComplex &second) const;
 
-    TComplex operator/(TComplex second);
+    TComplex operator/(TComplex &second) const;
 
-    TComplex operator*(TComplex second);
+    TComplex operator*(TComplex &second) const;
 
     TComplex operator+=(TComplex second);
 
@@ -44,15 +44,15 @@ public:
 
     TComplex operator/=(double second);
 
-    TComplex operator=(double second);
+    TComplex operator=(double &second);
 
-    bool operator==(TComplex second);
+    bool operator==(TComplex &second) const;
 
-    bool operator!=(TComplex second);
+    bool operator!=(TComplex &second) const;
 
-    bool operator<(TComplex second);
+    bool operator<(TComplex &second);
 
-    bool operator>(TComplex second);
+    bool operator>(TComplex &second);
 
 
     friend TComplex pow(TComplex complex, double n);

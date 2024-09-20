@@ -21,12 +21,12 @@ TComplex::TComplex(double re, double im){
 }
 
 //Methods
-double TComplex::getRe(){
+double TComplex::getRe() const{
     return this->re;
 }
 
 
-double TComplex::getIm(){
+double TComplex::getIm() const{
     return this->im;
 }
 
@@ -51,24 +51,24 @@ TComplex pow(TComplex complex, double n){
 
 
 //Overloads
-TComplex TComplex::operator+(TComplex second){
+TComplex TComplex::operator+(TComplex &second) const{
     return TComplex(re + second.re, im + second.im);
 }
 
 
-TComplex TComplex::operator-(TComplex second){
+TComplex TComplex::operator-(TComplex &second) const{
     return TComplex(re - second.re, im - second.im);
 }
 
 
-TComplex TComplex::operator/(TComplex second){
+TComplex TComplex::operator/(TComplex &second) const{
     double a = (re * second.re + im * second.im)/(second.re * second.re + second.im * second.im);
     double b = (second.re * im - re * second.im)/(second.re * second.re + second.im * second.im);
     return TComplex(a, b);
 }
 
 
-TComplex TComplex::operator*(TComplex second){
+TComplex TComplex::operator*(TComplex &second) const{
     double a;
     double b;
     a = re * second.re - im * second.im;
@@ -111,23 +111,29 @@ TComplex TComplex::operator*=(TComplex second){
 }
 
 
-bool TComplex::operator==(TComplex second){
+bool TComplex::operator==(TComplex &second) const{
     if(re == second.re && im == second.im) return true;
     return false;
 }
 
 
-bool TComplex::operator!=(TComplex second){
+bool TComplex::operator!=(TComplex &second) const{
     if(re != second.re || im != second.im) return true;
     return false;
 }
 
 
 std::ostream &operator<<(std::ostream &os, const TComplex &complex){
-    if (complex.im < 0){
+    if (complex.im < 0 && complex.re != 0){
         os << complex.re << complex.im << "i";
-    }else{
-        os << complex.re << " + " << complex.im << "i";
+    }else if (complex.im != 0 && complex.re == 0){
+        os << complex.im << "i";
+    }else if (complex.im > 0 && complex.re != 0){
+        os << complex.re << "+" << complex.im << "i";
+    }else if (complex.im == 0 && complex.re != 0){
+        os << complex.re;
+    }else {
+        os << "0";
     }
     return os;
 }
@@ -139,13 +145,13 @@ std::istream &operator>>(std::istream & in, TComplex &complex){
 }
 
 
-bool TComplex::operator<(TComplex second){
+bool TComplex::operator<(TComplex &second){
     if(module(this) < module(&second)) return true;
     return false;
 }
 
 
-bool TComplex::operator>(TComplex second){
+bool TComplex::operator>(TComplex &second){
     if(module(this) > module(&second)) return true;
     return false;
 }
@@ -166,7 +172,7 @@ TComplex TComplex::operator/=(double second){
 }
 
 
-TComplex TComplex::operator=(double second){
+TComplex TComplex::operator=(double &second){
     return TComplex(second, 0);
 }
 
