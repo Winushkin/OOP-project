@@ -117,6 +117,12 @@ bool TComplex::operator==(TComplex &second) const{
 }
 
 
+bool TComplex::operator==(int &second) const{
+    if(re == second && im == 0) return true;
+    return false;
+}
+
+
 bool TComplex::operator!=(TComplex &second) const{
     if(re != second.re || im != second.im) return true;
     return false;
