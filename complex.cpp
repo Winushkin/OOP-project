@@ -188,3 +188,11 @@ TComplex TComplex::operator=(double &second){
     return TComplex(second, 0);
 }
 
+
+TComplex TComplex::operator*(int &second) const {
+    double a;
+    double b;
+    a = re * second;
+    b = im * second;
+    return TComplex(a, b);
+}
