@@ -8,5 +8,8 @@ add_executable(OOPPractice
         array.cpp
         application.cpp
         complex.h
-        complex.cpp)
+        complex.cpp
+        polynom.cpp
+        polynom.h
+        polynom.h)
 
