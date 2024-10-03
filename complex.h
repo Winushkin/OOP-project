@@ -48,7 +48,7 @@ public:
 
     bool operator==(TComplex &second) const;
 
-    bool operator==(int &second) const;
+    bool operator!=(int second) const;
 
     bool operator!=(TComplex &second) const;
 
