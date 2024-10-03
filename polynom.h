@@ -4,11 +4,14 @@
 #include "number.h"
 
 class Polynom {
-    number* solutions;
-    number* coefficients;
+    number* roots = nullptr;
+    number* coefficients = nullptr;
+    int degree = 0;
+
 public:
-    Polynom();
-    Polynom(number a, int N);
+    Polynom(number *coefficients = nullptr, int degree = 0);
+    void printWithDegrees();
+    void printWithRoots();
 };
 
 
