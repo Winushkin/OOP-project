@@ -10,8 +10,14 @@ class Polynom {
 
 public:
     Polynom(number *coefficients = nullptr, int degree = 0);
+
     void printWithDegrees();
+
     void printWithRoots();
+
+    number valueAtPoint(number point);
+
+
 };
 
 

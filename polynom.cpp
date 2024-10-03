@@ -3,6 +3,7 @@
 
 Polynom::Polynom(number *coefficients, int degree) : coefficients(coefficients), degree(degree){}
 
+
 void Polynom::printWithDegrees() {
     cout << "p(x) = ";
     if (*(coefficients) != 0){
@@ -23,29 +24,33 @@ void Polynom::printWithDegrees() {
 }
 
 
-std::vector<int> multiplyPolynomials(const std::vector<int>& poly1, const std::vector<int>& poly2) {
-    std::vector<int> result(poly1.size() + poly2.size() - 1, 0);
+void Polynom::printWithRoots() {
+    cout << "p(x) = ";
+    if(*(coefficients) != 0) {
+        cout << *(coefficients);
+    }else{
+        cout << "0";
+    }
 
-    for (size_t i = 0; i < poly1.size(); ++i) {
-        for (size_t j = 0; j < poly2.size(); ++j) {
-            result[i + j] += poly1[i] * poly2[j];
+    for(int i = 0; i <= degree; i++){
+        if(*(roots + i) != 0){
+            cout << "(x - " << *(roots + i) << ")";
+        }else{
+            cout << "x";
         }
     }
 
-    return result;
+
 }
 
 
-
-std::vector<int> polynomialFromRoots(const std::vector<int>& roots, int an) {
-    // Начнем с полинома (x - r1)
-    std::vector<int> result = {an, -an * roots[0]};
-
-    // Поочередно умножаем на (x - ri)
-    for (size_t i = 1; i < roots.size(); ++i) {
-        std::vector<int> nextPoly = {1, -roots[i]};
-        result = multiplyPolynomials(result, nextPoly);
+number Polynom::valueAtPoint(number point){
+    number sum = 0;
+    for(int i = 0; i < degree; i++){
+        number a = *(coefficients + i);
+        number b = pow(point, degree - i);
+        sum += a * b;
     }
-
-    return result;
+    sum += *(coefficients + degree);
+    return sum;
 }
