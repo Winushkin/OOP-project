@@ -5,9 +5,7 @@
 using namespace std;
 
 
-Application::Application() {
-
-}
+Application::Application() {}
 
 
 void Application::showMenu() {
@@ -19,7 +17,7 @@ void Application::showMenu() {
     cout << "6. Посчитать СКО\n";
     cout << "7. Отсортировать\n";
     cout << "8. Изменить элемент\n";
-    cout << "0. Выйти\n\n";
+    cout << "0. Назад\n\n";
 }
 
 
@@ -100,4 +98,64 @@ int Application::exec(){
 }
 
 
+void Application::mainMenu() {
+    char choise;
+    while(true){
+        cout << "Меню программы:\n" <<
+             "1) Действия с массивом\n" <<
+             "2) Действия с полиномом\n--> ";
+        cin >> choise;
+        switch (choise) {
+            case '1':
+                exec();
+                break;
+            case '2':
 
+                break;
+            default:
+                cout << "\nНеверный ввод\n";
+        }
+    }
+}
+
+
+void Application::polynomMenu() {
+    cout << "1) Создать полином\n" <<
+    "2) Изменить коэффициент\n" <<
+    "3) Изменить один из корней\n" <<
+    "4) Вычислить значение в заданной точке\n" <<
+    "5) Показать полином\n" <<
+    "6) Назад\n--> ";
+}
+
+
+int Application::polynomApp() {
+    char choise;
+    while(true){
+        polynomMenu();
+        cin >> choise;
+        switch (choise) {
+            case '1':
+
+                break;
+            case '2':
+
+                break;
+            case '3':
+
+                break;
+            case '4':
+
+                break;
+            case '5':
+
+                break;
+            case '6':
+                return 0;
+            default:
+                cout << "\nНеверный ввод";
+                break;
+        }
+        cout << "\n";
+    }
+}

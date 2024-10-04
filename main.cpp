@@ -3,6 +3,6 @@
 
 int main(){
     Application app = Application();
-    app.exec();
+    app.mainMenu();
     return 0;
 }

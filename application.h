@@ -10,8 +10,16 @@ class Application{
 
 public:
     Application();
+
     void showMenu();
+
+    void mainMenu();
+
     int exec();
+
+    int polynomApp();
+
+    void polynomMenu();
 };
 
 #endif //OOPPRACTICE_APPLICATION_H
