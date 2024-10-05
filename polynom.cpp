@@ -7,19 +7,25 @@ Polynom::Polynom(): coefficients(nullptr), roots(nullptr), degree(0) {}
 void Polynom::printWithDegrees() {
     cout << "p(x) = ";
     if (*(coefficients) != 0){
-        cout << " " << *(coefficients) << "x^" << degree;
+        if(*(coefficients) != 1) cout << " " << *(coefficients) << "x^" << degree;
+        else cout << " " << "x^" << degree;
     }
     for ( int i = 1; i < degree - 1; i++ ){
-        cout << " + ";
         if (*(coefficients + i) != 0){
-            cout << *(coefficients + i) << "x^" << degree - i;
+            if(*(coefficients + i) > 0) cout << "+";
+            if (*(coefficients + i) != 1) cout << *(coefficients + i) << "x^" << degree - i;
+            else cout << "x^" << degree - i;
         }
     }
     if ( *(coefficients + degree - 1) != 0 ){
-        cout << " + " << *(coefficients + degree - 1) << "x";
+        if(*(coefficients + degree - 1) > 0){
+            cout << "+" << *(coefficients + degree - 1) << "x";
+        }else cout << *(coefficients + degree - 1) << "x";
     }
     if ( *(coefficients + degree) != 0 ){
-        cout << " + " << *(coefficients + degree);
+        if(*(coefficients + degree) > 0){
+            cout << "+" << *(coefficients + degree);
+        }else cout << *(coefficients + degree);
     }
 }
 
@@ -27,20 +33,20 @@ void Polynom::printWithDegrees() {
 void Polynom::printWithRoots() {
     cout << "p(x) = ";
     if(*(coefficients) != 0) {
-        cout << *(coefficients);
+        if(*(coefficients) != 1) cout << *(coefficients);
+        for(int i = 0; i < degree; i++){
+            if(*(roots + i) != 0){
+                if(*(roots + i) > 0) cout << "(x-" << *(roots + i) << ")";
+                else {
+                    cout << "(x+" << *(roots + i) * -1 << ")";
+                }
+            }else{
+                cout << "x";
+            }
+        }
     }else{
         cout << "0";
     }
-
-    for(int i = 0; i < degree; i++){
-        if(*(roots + i) != 0){
-            cout << "(x - " << *(roots + i) << ")";
-        }else{
-            cout << "x";
-        }
-    }
-
-
 }
 
 
@@ -55,32 +61,25 @@ number Polynom::valueAtPoint(number point){
     return sum;
 }
 
+
 Polynom *Polynom::fill(number leadingCoefficient, number* roots, int rootsCount) {
-    this->roots = roots;
-    coefficients = new number [rootsCount];
-    coefficients[0] = leadingCoefficient;
-    degree = rootsCount - 1;
-    for (int i = 1; i <= degree; ++i) {
-        coefficients[i] = 0;
+    Polynom* polynom = new Polynom();
+    polynom->roots = roots;
+    polynom->coefficients = new number [rootsCount];
+    polynom->coefficients[0] = leadingCoefficient;
+    polynom->degree = rootsCount - 1;
+    for (int i = 1; i <= polynom->degree; ++i) {
+        polynom->coefficients[i] = 0;
     }
-    for (int i = 0; i < degree; ++i) {
+    for (int i = 0; i < polynom->degree; ++i) {
         number root = roots[i];
-        // Обновляем коэффициенты справа налево, чтобы избежать перезаписи
         for (int j = i; j >= 0; --j) {
-            // Коэффициент a_{j+1} обновляется с учетом a_j
-            coefficients[j + 1] += coefficients[j];
-            // Коэффициент a_j умножается на -root
-            coefficients[j] *= -root;
+            polynom->coefficients[j + 1] += polynom->coefficients[j];
+            polynom->coefficients[j] *= root * -1;
         }
     }
-
     for(int i = 0; i < rootsCount / 2; i++){
-        swap(coefficients[i], coefficients[rootsCount - i - 1]);
+        swap(polynom->coefficients[i], polynom->coefficients[rootsCount - i - 1]);
     }
-
-    cout << "\n";
-    for(int i = 0; i < rootsCount; i++){
-        cout << coefficients[i] << " ";
-    }
-    return nullptr;
+    return polynom;
 }

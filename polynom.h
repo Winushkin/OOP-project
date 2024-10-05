@@ -7,7 +7,6 @@ class Polynom {
     number* roots = nullptr;
     number* coefficients = nullptr;
     int degree = 0;
-
 public:
     Polynom();
 
@@ -18,8 +17,6 @@ public:
     void printWithRoots();
 
     number valueAtPoint(number point);
-
-
 };
 
 
