@@ -32,7 +32,7 @@ public:
 
     TComplex operator*(TComplex &second) const;
 
-    TComplex operator*(int &second) const;
+    TComplex operator*(int second) const;
 
     TComplex operator+=(TComplex second);
 
