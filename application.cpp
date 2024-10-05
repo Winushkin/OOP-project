@@ -144,7 +144,7 @@ int Application::polynomApp() {
         cin >> choise;
         switch (choise) {
             case '1':
-                cout << "Введите значение коэффициента an = ";
+                cout << "\nВведите значение коэффициента an = ";
                 cin >> leadingCoefficient;
                 cout << "Введите корни полинома:\n";
                 roots = new number[rootsCount];
@@ -161,13 +161,23 @@ int Application::polynomApp() {
                         break;
                     }
                 }
-                polynom->fill(leadingCoefficient, roots, rootsCount + 1);
+                delete polynom;
+                polynom = polynom->fill(leadingCoefficient, roots, rootsCount + 1);
                 break;
             case '2':
-
+                cout << "\nВведите новый коэффициент: ";
+                cin >> leadingCoefficient;
+                delete polynom;
+                polynom = polynom->fill(leadingCoefficient, roots, rootsCount + 1);
                 break;
             case '3':
-
+                int index;
+                cout << "\nВведите индекс корня: ";
+                cin >> index;
+                cout << "Введите новый корень: ";
+                cin >> *(roots + index);
+                delete polynom;
+                polynom = polynom->fill(leadingCoefficient, roots, rootsCount + 1);
                 break;
             case '4':
                 int point;
@@ -181,6 +191,8 @@ int Application::polynomApp() {
                 polynom->printWithRoots();
                 break;
             case '6':
+                delete polynom;
+                polynom = nullptr;
                 return 0;
             default:
                 cout << "\nНеверный ввод";
