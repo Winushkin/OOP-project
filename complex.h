@@ -58,6 +58,10 @@ public:
 
     bool operator>(TComplex &second);
 
+    bool operator>(int second);
+
+    bool operator==(int second) const;
+
 
     friend TComplex pow(TComplex complex, double n);
     friend istream& operator >> (istream & in, TComplex & c);

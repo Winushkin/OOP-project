@@ -118,8 +118,8 @@ bool TComplex::operator==(TComplex &second) const{
 
 
 bool TComplex::operator!=(int second) const{
-    if(re == second && im == 0) return true;
-    return false;
+    if(re == second && im == 0) return false;
+    return true;
 }
 
 
@@ -195,4 +195,17 @@ TComplex TComplex::operator*(int second) const {
     a = re * second;
     b = im * second;
     return TComplex(a, b);
+}
+
+bool TComplex::operator==(int second) const {
+    if(re == second && im == 0) return true;
+    return false;
+}
+
+bool TComplex::operator>(int second) {
+    if(module(this) > second) return true;
+    if(module(this) == second){
+        if(atan(this->im/this->re) > atan(0))return true;
+    }
+    return false;
 }
