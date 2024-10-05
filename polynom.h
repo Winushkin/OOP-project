@@ -9,7 +9,9 @@ class Polynom {
     int degree = 0;
 
 public:
-    Polynom(number *coefficients = nullptr, int degree = 0);
+    Polynom();
+
+    Polynom* fill(number leadingCoefficient, number* roots, int rootsCount);
 
     void printWithDegrees();
 

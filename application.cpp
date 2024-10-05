@@ -1,6 +1,5 @@
 #include "application.h"
 
-#include "iostream"
 
 using namespace std;
 
@@ -103,15 +102,18 @@ void Application::mainMenu() {
     while(true){
         cout << "Меню программы:\n" <<
              "1) Действия с массивом\n" <<
-             "2) Действия с полиномом\n--> ";
+             "2) Действия с полиномом\n" <<
+             "3) Выход\n--> ";
         cin >> choise;
         switch (choise) {
             case '1':
                 exec();
                 break;
             case '2':
-
+                polynomApp();
                 break;
+            case '3':
+                return;
             default:
                 cout << "\nНеверный ввод\n";
         }
@@ -130,13 +132,36 @@ void Application::polynomMenu() {
 
 
 int Application::polynomApp() {
+    Polynom* polynom = new Polynom;
     char choise;
+    number leadingCoefficient;
+    number root;
+    number* roots = nullptr;
+    int rootsCount = 0;
+
     while(true){
         polynomMenu();
         cin >> choise;
         switch (choise) {
             case '1':
-
+                cout << "Введите значение коэффициента an = ";
+                cin >> leadingCoefficient;
+                cout << "Введите корни полинома:\n";
+                roots = new number[rootsCount];
+                while (cin >> root){
+                    number  *rez = new number[rootsCount+1];
+                    for (int i = 0; i < rootsCount; i++) {
+                        rez[i] = roots[i];
+                    }
+                    rez[rootsCount] = root;
+                    rootsCount++;
+                    delete[] roots;
+                    roots = rez;
+                    if (cin.peek() == '\n') {
+                        break;
+                    }
+                }
+                polynom->fill(leadingCoefficient, roots, rootsCount + 1);
                 break;
             case '2':
 
@@ -145,10 +170,15 @@ int Application::polynomApp() {
 
                 break;
             case '4':
-
+                int point;
+                cout << "\nВведите точку\n" << "x = ";
+                cin >> point;
+                cout << "p(" << point << ") = " << polynom->valueAtPoint(point);
                 break;
             case '5':
-
+                polynom->printWithDegrees();
+                cout << "\n";
+                polynom->printWithRoots();
                 break;
             case '6':
                 return 0;

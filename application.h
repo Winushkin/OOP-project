@@ -1,5 +1,6 @@
 #include "array.h"
 #include "number.h"
+#include "polynom.h"
 
 
 #ifndef OOPPRACTICE_APPLICATION_H
