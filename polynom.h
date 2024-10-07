@@ -17,6 +17,9 @@ public:
     void printWithRoots();
 
     number valueAtPoint(number point);
+
+    friend ostream& operator << (ostream & os, const Polynom & c);
+
 };
 
 

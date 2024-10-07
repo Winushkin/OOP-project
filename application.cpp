@@ -116,6 +116,7 @@ void Application::mainMenu() {
                 return;
             default:
                 cout << "\nНеверный ввод\n";
+                return;
         }
     }
 }
