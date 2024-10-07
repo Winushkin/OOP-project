@@ -191,11 +191,7 @@ int Application::polynomApp() {
                 break;
 
             case '5':
-                polynom->printWithDegrees();
-                cout << "\n";
-                cout << polynom;
-                cout << "\n";
-                polynom->printWithRoots();
+                cout << *polynom;
                 break;
 
             case '6':
