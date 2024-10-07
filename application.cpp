@@ -165,12 +165,14 @@ int Application::polynomApp() {
                 delete polynom;
                 polynom = polynom->fill(leadingCoefficient, roots, rootsCount + 1);
                 break;
+
             case '2':
                 cout << "\nВведите новый коэффициент: ";
                 cin >> leadingCoefficient;
                 delete polynom;
                 polynom = polynom->fill(leadingCoefficient, roots, rootsCount + 1);
                 break;
+
             case '3':
                 int index;
                 cout << "\nВведите индекс корня: ";
@@ -180,21 +182,27 @@ int Application::polynomApp() {
                 delete polynom;
                 polynom = polynom->fill(leadingCoefficient, roots, rootsCount + 1);
                 break;
+
             case '4':
                 int point;
                 cout << "\nВведите точку\n" << "x = ";
                 cin >> point;
                 cout << "p(" << point << ") = " << polynom->valueAtPoint(point);
                 break;
+
             case '5':
                 polynom->printWithDegrees();
                 cout << "\n";
+                cout << polynom;
+                cout << "\n";
                 polynom->printWithRoots();
                 break;
+
             case '6':
                 delete polynom;
                 polynom = nullptr;
                 return 0;
+
             default:
                 cout << "\nНеверный ввод";
                 break;
