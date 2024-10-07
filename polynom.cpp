@@ -4,30 +4,30 @@
 Polynom::Polynom(): coefficients(nullptr), roots(nullptr), degree(0) {}
 
 
-//void Polynom::printWithDegrees() {
-//    cout << "p(x) = ";
-//    if (*(coefficients) != 0){
-//        if(*(coefficients) != 1) cout << " " << *(coefficients) << "x^" << degree;
-//        else cout << " " << "x^" << degree;
-//    }
-//    for ( int i = 1; i < degree - 1; i++ ){
-//        if (*(coefficients + i) != 0){
-//            if(*(coefficients + i) > 0) cout << "+";
-//            if (*(coefficients + i) != 1) cout << *(coefficients + i) << "x^" << degree - i;
-//            else cout << "x^" << degree - i;
-//        }
-//    }
-//    if ( *(coefficients + degree - 1) != 0 ){
-//        if(*(coefficients + degree - 1) > 0){
-//            cout << "+" << *(coefficients + degree - 1) << "x";
-//        }else cout << *(coefficients + degree - 1) << "x";
-//    }
-//    if ( *(coefficients + degree) != 0 ){
-//        if(*(coefficients + degree) > 0){
-//            cout << "+" << *(coefficients + degree);
-//        }else cout << *(coefficients + degree);
-//    }
-//}
+void Polynom::printWithDegrees() {
+    cout << "p(x) = ";
+    if (*(coefficients) != 0){
+        if(*(coefficients) != 1) cout << " (" << *(coefficients) << ") x^" << degree;
+        else cout << "x^" << degree;
+    }
+    for ( int i = 1; i < degree - 1; i++ ){
+        if (*(coefficients + i) != 0){
+            cout << " ";
+            if(*(coefficients + i) > 0) cout << "+";
+            if (*(coefficients + i) != 1) cout << "(" <<  *(coefficients + i) << ") x^" << degree - i;
+            else cout << "x^" << degree - i;
+        }
+    }
+    if ( *(coefficients + degree - 1) != 0 ){
+        if(*(coefficients + degree - 1) > 0){
+            cout << " + (" << *(coefficients + degree - 1) << ")x";
+        }else cout << " (" << *(coefficients + degree - 1) << ")x";
+    }
+    if ( *(coefficients + degree) != 0 ){
+        if(*(coefficients + degree) > 0 ) cout << " +" ;
+        cout << " (" << *(coefficients + degree) << ")";
+    }
+}
 
 
 void Polynom::printWithRoots() {
@@ -84,28 +84,69 @@ Polynom *Polynom::fill(number leadingCoefficient, number* roots, int rootsCount)
     return polynom;
 }
 
-
+//моя версия
 std::ostream &operator<<(std::ostream &os, const Polynom &polynom) {
     os << "p(x) = ";
     if (*(polynom.coefficients) != 0){
-        if(*(polynom.coefficients) != 1) os << " " << *(polynom.coefficients) << "x^" << polynom.degree;
-        else os << " " << "x^" << polynom.degree;
+        if(*(polynom.coefficients) != 1) os << " (" << *(polynom.coefficients) << ") x^" << polynom.degree;
+        else os << "x^" << polynom.degree;
     }
     for ( int i = 1; i < polynom.degree - 1; i++ ){
         if (*(polynom.coefficients + i) != 0){
+            os << " ";
             if(*(polynom.coefficients + i) > 0) os << "+";
-            if (*(polynom.coefficients + i) != 1) os << *(polynom.coefficients + i) << "x^" << polynom.degree - i;
+            if (*(polynom.coefficients + i) != 1) os << "(" <<  *(polynom.coefficients + i) << ") x^" << polynom.degree - i;
             else os << "x^" << polynom.degree - i;
         }
     }
     if ( *(polynom.coefficients + polynom.degree - 1) != 0 ){
         if(*(polynom.coefficients + polynom.degree - 1) > 0){
-            os << "+" << *(polynom.coefficients + polynom.degree - 1) << "x";
-        }else os << *(polynom.coefficients + polynom.degree - 1) << "x";
+            os << " + (" << *(polynom.coefficients + polynom.degree - 1) << ")x";
+        }else os << " (" << *(polynom.coefficients + polynom.degree - 1) << ")x";
     }
     if ( *(polynom.coefficients + polynom.degree) != 0 ){
-        if(*(polynom.coefficients + polynom.degree) > 0){
-            os << "+" << *(polynom.coefficients + polynom.degree);
-        }else os << *(polynom.coefficients + polynom.degree);
+        if(*(polynom.coefficients + polynom.degree) > 0 ) os << " +" ;
+        os << " (" << *(polynom.coefficients + polynom.degree) << ")";
     }
+    return os;
 }
+
+
+//версия ГПТ
+//std::ostream &operator<<(std::ostream &os, const Polynom &polynom) {
+//    os << "p(x) = ";
+//
+//    // Выводим старший член полинома (если он не нулевой)
+//    if (polynom.coefficients[0] != 0) {
+//        if (polynom.coefficients[0] != 1)
+//            os << polynom.coefficients[0] << "x^" << polynom.degree;
+//        else
+//            os << "x^" << polynom.degree;
+//    }
+//
+//    // Выводим остальные члены полинома
+//    for (int i = 1; i < polynom.degree; i++) {
+//        if (polynom.coefficients[i] != 0) {
+//            if (polynom.coefficients[i] > 0)
+//                os << " + ";
+//            else
+//                os << " - ";
+//
+//            // Вывод коэффициента, если он не 1 или -1
+//            if (polynom.coefficients[i] != 1)
+//                os << polynom.coefficients[i] << "x^" << (polynom.degree - i);
+//            else
+//                os << "x^" << (polynom.degree - i);
+//        }
+//    }
+//
+//    // Последний член (при x^1 или просто свободный член)
+//    if (polynom.coefficients[polynom.degree] != 0) {
+//        if (polynom.coefficients[polynom.degree] > 0)
+//            os << " + " << polynom.coefficients[polynom.degree];
+//        else
+//            os << " - " << polynom.coefficients[polynom.degree];
+//    }
+//
+//    return os;
+//}
