@@ -145,21 +145,30 @@ int Application::polynomApp() {
         cin >> choise;
         switch (choise) {
             case '1':
+                if(roots != nullptr) {
+                    delete[] roots;
+                    roots = nullptr;
+                    rootsCount = 0;
+                }
                 cout << "\nВведите значение коэффициента an = ";
                 cin >> leadingCoefficient;
-                cout << "Введите корни полинома:\n";
-                roots = new number[rootsCount];
-                while (cin >> root){
-                    number  *rez = new number[rootsCount+1];
-                    for (int i = 0; i < rootsCount; i++) {
-                        rez[i] = roots[i];
-                    }
-                    rez[rootsCount] = root;
-                    rootsCount++;
-                    delete[] roots;
-                    roots = rez;
-                    if (cin.peek() == '\n') {
-                        break;
+                cout << "Ввести корни полинома - 1\nКорней нет - 0\n--> ";
+                cin >> choise;
+                if(choise != '0') {
+                    cout << "Введите корни полинома:\n";
+                    roots = new number[rootsCount];
+                    while (cin >> root){
+                        number  *rez = new number[rootsCount+1];
+                        for (int i = 0; i < rootsCount; i++) {
+                            rez[i] = roots[i];
+                        }
+                        rez[rootsCount] = root;
+                        rootsCount++;
+                        delete[] roots;
+                        roots = rez;
+                        if (cin.peek() == '\n') {
+                            break;
+                        }
                     }
                 }
                 delete polynom;
@@ -177,6 +186,10 @@ int Application::polynomApp() {
                 int index;
                 cout << "\nВведите индекс корня: ";
                 cin >> index;
+                if(rootsCount == 0) {
+                    cout << "Корни полинома пусты\n";
+                    break;
+                }
                 cout << "Введите новый корень: ";
                 cin >> *(roots + index);
                 delete polynom;
